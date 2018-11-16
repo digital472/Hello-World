@@ -9,8 +9,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh '''/usr/local/bin/custodian run --output-dir=. my-first-policy.yml
-'''
+        sh '/usr/local/bin/custodian run --output-dir=. my-first-policy.yml --region us-gov-west-1'
       }
     }
   }
