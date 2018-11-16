@@ -1,9 +1,10 @@
 pipeline {
   agent any
   stages {
-    stage('Dev') {
+    stage('Build') {
       steps {
         awsIdentity()
+        sh 'unzip deployment.zip'
       }
     }
   }
