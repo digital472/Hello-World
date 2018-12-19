@@ -9,7 +9,12 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        sh '/usr/local/bin/custodian run --output-dir=. my-first-policy.yml --region us-gov-west-1'
+        script {
+          def buildspec = readYaml (file: 'buildspec.yml')
+          for (int i=0; i < buildspec.phases.build.commands.size(); i++) {
+            sh buildspec.phases.build.commands[i]
+          }
+        }
       }
     }
   }
