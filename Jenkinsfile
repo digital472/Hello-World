@@ -8,6 +8,9 @@ pipeline {
       }
     }
     stage('Deploy') {
+      environment {
+        PATH = "/usr/local/bin:$PATH"
+      }
       steps {
         script {
           def buildspec = readYaml (file: 'buildspec.yml')
